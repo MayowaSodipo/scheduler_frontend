@@ -1,0 +1,67 @@
+<div class="card max-w-sm mx-auto space-y-8 font-medium text-center">
+  <h2 class="text-2xl font-semibold capitalize text-slate-600">
+    {{ appointmentDetails?.title }}
+  </h2>
+  <p class="flex items-center justify-between">
+    Date Created:
+    <span class="font-normal text-slate-400">{{
+      getDate(appointmentDetails?.createdDate)
+    }}</span>
+  </p>
+  <p class="flex items-center justify-between">
+    Appointment Date:
+    <span class="text-slate-400">{{
+      getDate(appointmentDetails?.appointmentDate)
+    }}</span>
+  </p>
+  <p class="flex items-center justify-between">
+    Status:
+    <span
+      class="max-w-[100px] text-center rounded-3xl p-1 px-2 text-sm"
+      [ngClass]="
+        status ? 'text-yellow-400 bg-yellow-200 ' : 'text-red-500 bg-red-300'
+      "
+      >{{ status ? "Pending" : "Expired" }}</span
+    >
+  </p>
+  <div class="flex items-center justify-between">
+    <p>Description:</p>
+    <p class="text-slate-400">{{ appointmentDetails?.description }}</p>
+  </div>
+
+  <button
+    (click)="openModal()"
+    class="w-full max-w-[120px] bg-red-500 text-white rounded-lg p-2"
+  >
+    Delete
+  </button>
+</div>
+<app-modal
+  [isOpen]="isOpen"
+  (eventClick)="closeModal()"
+  class="text-center"
+  header="Delete Appointment"
+>
+  <i-feather
+    name="trash-2"
+    class="text-red-400"
+    style="width: 100px; height: 100px"
+  ></i-feather>
+  <h3 class="text-base">
+    Are you sure you want to delete
+    <span class="capitalize font-bold">{{ appointmentDetails.title }}</span>
+  </h3>
+  <div class="grid mt-6">
+    <div class="flex gap-4 justify-self-end">
+      <app-button (clickEvent)="closeModal()" variants="outlined"
+        >Cancel</app-button
+      >
+      <button
+        (click)="deleteAppointment(id)"
+        class="w-full max-w-[160px] bg-red-500 text-white rounded-lg p-2 text-xs"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</app-modal>

@@ -1,0 +1,113 @@
+<div class="card max-w-sm mx-auto space-y-8 font-medium text-center">
+  <h2 class="text-2xl font-semibold capitalize text-slate-600">
+    {{ userDetails?.username }}
+  </h2>
+  <p class="flex items-center justify-between">
+    Email:
+    <span class="font-normal text-slate-400">{{ userDetails?.email }}</span>
+  </p>
+  <p class="flex items-center justify-between">
+    Role:
+    <span class="text-slate-400 capitalize">{{ userDetails?.isAdmin }}</span>
+  </p>
+
+  <button
+    (click)="openModal()"
+    class="w-full max-w-[120px] bg-red-500 text-white rounded-lg p-2"
+  >
+    Delete
+  </button>
+</div>
+<p>User Appointments</p>
+<div class="my-4">
+  <table
+    class="border-collapse overflow-hidden border-spacing-0 card min-w-[400px] w-full"
+  >
+    <thead class="text-left text-gray-400 font-light">
+      <tr class="bg-gray-300">
+        <th>Id</th>
+        <th>Title</th>
+        <th>Date Created</th>
+        <th>Appointment Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="userDetails?.appointments.length">
+      <tr *ngFor="let item of userDetails.appointments; let i = index">
+        <td>
+          <p>{{ item.id }}</p>
+        </td>
+        <td>
+          <p>{{ item.title }}</p>
+        </td>
+        <td>
+          <p>{{ getDate(item.createdDate) }}</p>
+        </td>
+        <td>
+          <p>{{ getDate(item.appointmentDate) }}</p>
+        </td>
+        <td>
+          <p
+            class="max-w-[100px] text-center rounded-2xl p-0 text-sm"
+            [ngClass]="
+              status[i]
+                ? 'text-yellow-400 bg-yellow-200 '
+                : 'text-red-500 bg-red-300'
+            "
+          >
+            {{ status[i] ? "Pending" : "Expired" }}
+          </p>
+        </td>
+        <td>
+          <div class="flex items-center gap-3">
+            <a routerLink="/dashboard/appointments/{{ item.id }}">
+              <i-feather
+                name="edit"
+                style="width: 20px"
+                class="text-highlight"
+              ></i-feather
+            ></a>
+
+            <i-feather
+              name="trash-2"
+              style="width: 20px"
+              class="text-red-400"
+            ></i-feather>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p
+    class="text-gray-500 text-center mt-10"
+    *ngIf="!userDetails?.appointments.length"
+  >
+    There are no records to display
+  </p>
+</div>
+<app-modal
+  [isOpen]="isOpen"
+  (eventClick)="closeModal()"
+  class="text-center"
+  header="Delete user"
+>
+  <i-feather
+    name="trash-2"
+    class="text-red-400"
+    style="width: 100px; height: 100px"
+  ></i-feather>
+  <h3 class="text-base">Are you sure you want to delete your account</h3>
+  <div class="grid mt-6">
+    <div class="flex gap-4 justify-self-end">
+      <app-button (clickEvent)="closeModal()" variants="outlined"
+        >Cancel</app-button
+      >
+      <button
+        class="w-full max-w-[160px] bg-red-500 text-white rounded-lg p-2 text-xs"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</app-modal>

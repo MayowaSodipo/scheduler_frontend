@@ -1,0 +1,8 @@
+<button
+  class="text-xs rounded-lg w-full p-2 py-2 text-white uppercase"
+  [ngClass]="variants == 'contained' ? 'bg-highlight' : 'bg-slate-200'"
+  (click)="onClick()"
+  type="{{ type }}"
+>
+  <ng-content></ng-content>
+</button>

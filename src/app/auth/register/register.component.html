@@ -1,0 +1,15 @@
+<div class="grid md:grid-cols-2 w-full h-full place-items-center min-h-screen ">
+    <div class="bg-highlight w-full h-full grid place-items-center">
+        <img src="assets/LoginImage.png" alt="login">
+    </div>
+    <form action="" class="text-center w-full max-w-md" #registerForm="ngForm" (submit)="Register(registerForm)" >
+        <h2 class="text-3xl font-semibold">Create Your Account</h2>
+        <p class="my-5">Registration is free and fast</p>
+        <input type="text" name="username" placeholder="User Name" required ngModel>
+        <input type="email" name="email" placeholder="Email" required ngModel>
+        <input type="password" name="password" placeholder="Password" required ngModel>
+        <button class="bg-highlight rounded-md w-full py-1 my-4 hover:bg-slate-400 text-white" >Register</button>
+
+        <p>Dont have an account? <a href="/login" class="text-[#007AFF]">Login</a></p>
+    </form>
+</div>

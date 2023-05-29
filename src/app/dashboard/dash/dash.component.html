@@ -1,0 +1,45 @@
+<div class="">
+  <h3 class="text-xl font-bold mb-3">Hello {{ username }}</h3>
+  <div class="grid grid-cols-180 gap-4">
+    <div
+      class="card flex items-center gap-3"
+      *ngFor="let item of dashboardHomeDetails"
+    >
+      <div
+        class="text-white rounded-full p-2 grid place-items-center"
+        [style.background-color]="item.color"
+      >
+        <i-feather [name]="item.icon"></i-feather>
+      </div>
+      <div class="text-slate-400 text-sm">
+        <p>{{ item.title }}</p>
+        <h4 class="font-bold text-3xl text-slate-800">{{ item.count }}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="my-4">
+    <table
+      class="border-collapse overflow-hidden border-spacing-0 card min-w-[400px] w-full"
+    >
+      <thead class="text-left text-gray-400 font-light">
+        <tr class="bg-gray-300">
+          <th>Id</th>
+          <th>Title</th>
+          <th>Date Created</th>
+          <th>Appointment Date</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="tableData?.data.length">
+        <tr *ngFor="let item of tableData.data">
+          <td>{{ item.id }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ getDate(item.createdDate) }}</td>
+          <td>{{ getDate(item.appointmentDate) }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-gray-500 text-center mt-10" *ngIf="!tableData?.data.length">
+      There are no records to display
+    </p>
+  </div>
+</div>

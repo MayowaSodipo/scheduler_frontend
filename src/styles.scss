@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "ngx-toastr/toastr";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@layer base {
+  input,
+  textarea {
+    @apply border border-[#DEDEDE] px-3 py-2 rounded-md placeholder:text-[#DEDEDE] text-sm w-full block my-2 hover:border-slate-400 outline-none focus:border-slate-500 focus:border-2;
+  }
+  textarea {
+    @apply min-h-[100px];
+  }
+  td,
+  th {
+    @apply py-2 px-5;
+  }
+  td p {
+    @apply text-sm capitalize py-2;
+  }
+  tr {
+    @apply border-b border-gray-300;
+  }
+  th {
+    @apply font-medium;
+  }
+}
+p {
+  @apply text-sm;
+}
+@layer components {
+  .card {
+    @apply rounded-xl bg-white p-3 shadow-lg w-full;
+  }
+}

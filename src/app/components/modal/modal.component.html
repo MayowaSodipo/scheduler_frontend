@@ -1,0 +1,22 @@
+<div
+  class="absolute inset-0 max-w-screen min-h-screen z-10 grid place-items-center"
+  *ngIf="isOpen"
+>
+  <div
+    (click)="closeModal()"
+    class="max-w-screen min-h-screen z-10 bg-[rgba(0,0,0,0.28)] absolute inset-0"
+  ></div>
+  <div class="card max-w-md z-20 relative">
+    <div class="flex justify-between items-center">
+      <h3 class="text-base">{{ header }}</h3>
+      <i-feather
+        name="x-circle"
+        class="cursor-pointer hover:text-pink-600 hover:scale-105"
+        (click)="closeModal()"
+      ></i-feather>
+    </div>
+    <div class="mt-5">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

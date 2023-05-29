@@ -1,0 +1,46 @@
+<div class="flex">
+  <div
+    class="bg-[#1A1919] p-4 px-2 text-white min-h-screen w-full max-w-[220px]"
+  >
+    <ul class="flex flex-col mt-12 gap-3">
+      <li
+        *ngFor="let item of dashboardRoutes"
+        class=""
+        [ngClass]="{
+          'bg-highlight text-white rounded-md': item.path === currentRoute
+        }"
+      >
+        <div
+          class="py-2 px-3 flex items-center gap-3 text-sm"
+          *ngIf="item.role"
+        >
+          <i-feather name="{{ item.icon }}"></i-feather>
+          <a href="{{ item.path }}">{{ item.title }}</a>
+        </div>
+      </li>
+    </ul>
+    <button
+      class="flex items-center gap-3 mt-16 py-2 px-3 text-sm"
+      (click)="logOut()"
+    >
+      <i-feather name="log-out"></i-feather>Log out
+    </button>
+  </div>
+  <div class="w-full px-6 py-3 bg-slate-50">
+    <div class="flex justify-between items-center mb-4">
+      <input
+        type="search"
+        name=""
+        id=""
+        class="max-w-[200px] p-1"
+        placeholder="Search for anything"
+      />
+      <div class="flex gap-3 text-slate-500">
+        <i-feather name="settings"></i-feather>
+        <i-feather name="user"></i-feather>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

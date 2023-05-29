@@ -1,0 +1,29 @@
+<div class="grid md:grid-cols-2 w-full h-full place-items-center min-h-screen">
+  <div class="bg-highlight w-full h-full grid place-items-center">
+    <img src="assets/LoginImage.png" alt="login" />
+  </div>
+  <form
+    action=""
+    class="text-center w-full max-w-md"
+    #loginForm="ngForm"
+    (submit)="Login(loginForm)"
+  >
+    <h2 class="text-3xl font-semibold">Login</h2>
+    <p class="my-5">Welcome back, Please enter your details</p>
+    <input type="text" name="username" placeholder="User Name" ngModel />
+    <input type="password" name="password" placeholder="Password" ngModel />
+    <button
+      class="bg-highlight rounded-md w-full py-1 my-4 hover:bg-slate-400 text-white"
+      type="submit"
+    >
+      Login
+    </button>
+    <p *ngIf="errorData" class="text-red-400 text-xs text-left">
+      {{ errorData }}
+    </p>
+    <p>
+      Dont have an account?
+      <a href="/register" class="text-[#007AFF]">Register</a>
+    </p>
+  </form>
+</div>
