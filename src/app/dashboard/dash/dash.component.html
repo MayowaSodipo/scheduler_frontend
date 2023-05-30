@@ -1,17 +1,31 @@
 <div class="">
   <h3 class="text-xl font-bold mb-3">Hello {{ username }}</h3>
-  <div class="grid grid-cols-180 gap-4">
+  <div class="card w-full flex justify-between">
+    <div class="">
+      <h2 class="text-2xl text-highlight font-medium">Appointment Scheduler</h2>
+      <p class="max-w-md text-justify my-6">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum corporis
+        itaque, voluptates at eligendi nesciunt veritatis laborum sed ipsam sit?
+      </p>
+      <app-button>Explore</app-button>
+    </div>
+    <div class="w-60"><img src="../../../assets/scheduler.svg" alt="" /></div>
+  </div>
+  <div class="grid grid-cols-180 gap-4 my-4">
     <div
-      class="card flex items-center gap-3"
+      class="card flex items-center gap-3 p-2"
       *ngFor="let item of dashboardHomeDetails"
     >
       <div
         class="text-white rounded-full p-2 grid place-items-center"
         [style.background-color]="item.color"
       >
-        <i-feather [name]="item.icon"></i-feather>
+        <i-feather
+          [name]="item.icon"
+          style="width: 35px; height: 35px"
+        ></i-feather>
       </div>
-      <div class="text-slate-400 text-sm">
+      <div class="text-slate-400 text-xs">
         <p>{{ item.title }}</p>
         <h4 class="font-bold text-3xl text-slate-800">{{ item.count }}</h4>
       </div>

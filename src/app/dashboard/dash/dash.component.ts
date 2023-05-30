@@ -20,10 +20,12 @@ export class DashComponent implements OnInit {
     this.appointmentService.getAll().subscribe({
       next: (res) => {
         this.tableData = res;
+        this.dashboardHomeDetails[0].count = this.tableData.data.length;
       },
       error: (error) => console.log(error),
     });
   }
+
   getDate(date: string) {
     return getRelativeDate(date);
   }
@@ -36,7 +38,7 @@ export class DashComponent implements OnInit {
       icon: 'check-circle',
     },
     {
-      title: 'Canceled Appointments',
+      title: 'Canceled App',
       color: '#ED2B2A',
       count: 0,
       icon: 'x-circle',
